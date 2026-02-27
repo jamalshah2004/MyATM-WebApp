@@ -1,5 +1,25 @@
-// Source - https://stackoverflow.com/a/75904914
-// Posted by JoyShaheb
-// Retrieved 2026-02-27, License - CC BY-SA 4.0
-
-{ "rewrites": [{ "source": "/(.*)", "destination": "/" }] }
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "version": 2,
+  "buildCommand": "npm run build",
+  "installCommand": "npm install",
+  "devCommand": "npm run dev",
+  "framework": "nextjs",
+  "redirects": [
+    {
+      "source": "/old-page",
+      "destination": "/new-page",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://api.mybackend.com/:path*"
+    }
+  ],
+  "env": {
+    "NODE_ENV": "production",
+    "NEXT_PUBLIC_API_URL": "https://api.myapp.com"
+  }
+}
